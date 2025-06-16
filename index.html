@@ -1,1 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Website Layout</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MyLogo</div>
+            <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li class="has-submenu">
+                        <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Web Development</a></li>
+                            <li class="has-submenu-2">
+                                <a href="#">Digital Marketing <i class="fas fa-chevron-right"></i></a>
+                                <ul class="sub-menu-2">
+                                    <li><a href="#">SEO</a></li>
+                                    <li><a href="#">Content Marketing</a></li>
+                                    <li><a href="#">Social Media Marketing</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Social Media</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." />
+                <button><i class="fas fa-search" aria-label="Search"></i></button>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f" aria-label="Facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter" aria-label="Twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in" aria-label="LinkedIn"></i></a>
+            </div>
+
+        </div>  
+        <div class="nav-container">
+
+
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <img src="https://placehold.co/1920x600?text=Banner&font=roboto" alt="Banner">
+        <div class="banner-overlay">
+            <div class="banner-text">
+                <h2>Welcome to Our Website</h2>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Empowering Education</h1>
+        <p>Your learning journey starts here.</p>
+    </section>
+
+    <!-- About Us -->
+    <section class="about-us">
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>We provide quality education and training to help students achieve their goals. Our courses are designed
+                to be practical, affordable, and industry-relevant.</p>
+        </div>
+        <div class="about-image">
+            <img src="https://placehold.co/600x400?text=About+Us&font=roboto" alt="About Us">
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Development</h3>
+                <p>Learn to build responsive and modern websites.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-chart-line"></i>
+                <h3>Digital Marketing</h3>
+                <p>Master online marketing tools and techniques.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-database"></i>
+                <h3>Data Analytics</h3>
+                <p>Analyze data and uncover valuable insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content"">
+        <!-- Articles Section -->
+        <section class="articles">
+            <h2>Latest Articles</h2>
+            <div class="article-grid">
+                <div class="article">
+                    <img src="https://placehold.co/100x100?text=Icon&font=roboto" alt="Service Icon">
+                    <h3>Learning HTML & CSS</h3>
+                    <p>A beginner's guide to building websites.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+                <div class="article">
+                    <img src="https://placehold.co/100x100?text=Icon&font=roboto" alt="Service Icon">
+                    <h3>SEO Basics</h3>
+                    <p>Improve your site’s visibility on search engines.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+                <div class="article">
+                    <img src="https://placehold.co/100x100?text=Icon&font=roboto" alt="Service Icon">
+                    <h3>JavaScript Tips</h3>
+                    <p>Level up your frontend coding skills.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Useful Links</h2>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Refund Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+
+            <div class="newsletter">
+                <h3>Subscribe to Newsletter</h3>
+                <input type="email" placeholder="Your email" />
+                <button>Subscribe</button>
+            </div>
+
+            <div class="ads">
+                <h3>Sponsored</h3>
+                <div class="ad-banner">
+                    <img src="https://placehold.co/300x250?text=Ad+Banner&font=roboto" alt="Advertisement">
+                    <a href="#" class="read-more">Learn More</a>
+                </div>
+                <div class="ad-banner">
+                    <img src="https://placehold.co/300x250?text=Ad+Banner&font=roboto" alt="Advertisement">
+                    <a href="#" class="read-more">Explore Offer</a>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91-1234567890</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 YourCompany. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav');
+        toggle.onclick = () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+        };
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // For first level submenu
+            document.querySelectorAll('.has-submenu > a').forEach(item => {
+                item.addEventListener('click', function (e) {
+                    if (window.innerWidth < 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+
+            // For second level submenu
+            document.querySelectorAll('.has-submenu-2 > a').forEach(item => {
+                item.addEventListener('click', function (e) {
+                    if (window.innerWidth < 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+
+</html>
