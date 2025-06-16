@@ -5,8 +5,566 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Website Layout</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    /* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Reset */
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 10px 15px;
+}
+
+/* Header */
+header {
+  background-color: #212121;
+  padding: 10px 20px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu-toggle {
+  font-size: 1.5rem;
+  color: #fff;
+  display: none;
+  cursor: pointer;
+}
+
+/* Nav list */
+.nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  background-color: #333;
+  padding: 10px;
+  position: relative;
+}
+
+.nav-list li {
+  position: relative;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 12px;
+  transition: background 0.3s ease;
+}
+
+.nav-list a:hover {
+  background: #333;
+  border-radius: 5px;
+}
+.social-icons{
+  display: flex;
+}
+
+/* Submenu */
+.has-submenu > a i {
+  margin-left: 5px;
+  font-size: 0.75rem;
+}
+.has-submenu:hover .sub-menu {
+  display: flex;
+}
+/* Chevron */
+.fas.fa-chevron-down,
+.fas.fa-chevron-right {
+  margin-left: 8px;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #444;
+  display: none;
+  flex-direction: column;
+  min-width: 200px;
+  border-radius: 4px;
+}
+
+.sub-menu li a {
+  padding: 10px 15px;
+}
+
+/* Base for second-level submenu */
+.sub-menu-2 {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #3a3a3a;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.sub-menu-2 li a {
+  padding: 10px 15px;
+  color: #fff;
+  display: block;
+  white-space: nowrap;
+}
+
+.sub-menu-2 li a:hover {
+  background: #4a4a4a;
+}
+
+/* Show submenu on hover */
+.sub-menu li:hover > .sub-menu-2 {
+  display: flex;
+}
+
+/* Base for second-level submenu */
+.sub-menu-2 {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #3a3a3a;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.sub-menu-2 li a {
+  padding: 10px 15px;
+  color: #fff;
+  display: block;
+  white-space: nowrap;
+}
+
+.sub-menu-2 li a:hover {
+  background: #4a4a4a;
+  
+}
+
+/* Show submenu on hover */
+.sub-menu li:hover > .sub-menu-2 {
+  display: flex;
+}
+/* Show submenu on hover */
+.has-submenu {
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+.container{
+  flex-direction: column;
+}
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    
+    right: 0;
+    background: #1a1a1a;
+    flex-direction: column;
+    display: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+  .menu-toggle.active + .nav {
+    display: flex;
+    flex-direction: row-reverse;
+
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-list li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .has-submenu .sub-menu {
+    position: static;
+    display: none;
+    background: #333;
+  }
+
+  .has-submenu.active .sub-menu {
+    display: block;
+  }
+
+  .has-submenu > a {
+    position: relative;
+  }
+
+  .has-submenu > a::after {
+    content: "▼";
+    font-size: 0.7rem;
+    position: absolute;
+    right: 15px;
+  }
+
+  /* Responsive toggle (optional for mobile) */
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+  }
+  .sub-menu,
+  .sub-menu-2 {
+    position: static;
+    display: none;
+  }
+  .has-submenu.active .sub-menu,
+  .has-submenu-2.active .sub-menu-2 {
+    display: flex;
+  }
+}
+
+  /* Toggle submenus on click (optional JS could improve UX) */
+  .has-submenu > a:focus + .sub-menu {
+    display: block;
+  }
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 3px 0 0 3px;
+}
+
+.search-bar button {
+  padding: 6px 10px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.social-icons ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a {
+  color: #fff;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-text {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: #fff;
+}
+
+.banner-text h2 {
+  font-size: 2.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 10px;
+  background: #00bcd4;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: #e0f7fa;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* About Section */
+.about-us {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  gap: 30px;
+  align-items: center;
+  background: #ffffff;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Services */
+.services {
+  padding: 40px 20px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.service {
+  background: #fff;
+  padding: 20px;
+  flex: 1 1 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service i {
+  font-size: 2rem;
+  color: #00bcd4;
+  margin-bottom: 10px;
+}
+
+/* Main Content Area */
+.main-content {
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #f0f0f0;
+}
+
+.articles {
+  flex: 3;
+}
+
+.article-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.article {
+  background: #fff;
+  padding: 20px;
+  flex: 1 1 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.article img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.sidebar li a {
+  color: #00bcd4;
+}
+
+.sidebar .newsletter input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.sidebar .newsletter button {
+  width: 100%;
+  padding: 8px;
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+}
+
+.ads .ad-banner {
+  margin-bottom: 15px;
+}
+
+.ads img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  background: #212121;
+  color: #fff;
+  padding: 30px 20px 10px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-around;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links a {
+  color: #bbb;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 0.9rem;
+  border-top: 1px solid #444;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .nav-links ul {
+    flex-direction: column;
+    background: #222;
+    width: 100%;
+    display: none;
+  }
+
+  .nav-links ul.show {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+    color: white;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .about-us {
+    flex-direction: column;
+  }
+
+  .service-grid {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
