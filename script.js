@@ -48,38 +48,15 @@ function validateForm(event) {
 }
 
 // Function to send WhatsApp message
-async function sendWhatsAppMessage(formData) {
-    const message = `
-New Registration:
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Date of Birth: ${formData.date}
-    `;
-
-    try {
-        const response = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + WHATSAPP_CONFIG.accountSid + '/Messages.json', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Basic ' + btoa(WHATSAPP_CONFIG.accountSid + ':' + WHATSAPP_CONFIG.authToken),
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                'From': WHATSAPP_CONFIG.from,
-                'To': WHATSAPP_CONFIG.to,
-                'Body': message
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('WhatsApp message failed to send');
-        }
-
-        console.log('WhatsApp message sent successfully');
-    } catch (error) {
-        console.error('Error sending WhatsApp message:', error);
-        throw error;
-    }
+function sendWhatsAppMessage(phoneNumber, message) {
+    // Remove any non-digit characters from phone number (e.g., +, spaces)
+    phoneNumber = phoneNumber.replace(/\D/g, '');
+    // Encode the message for URL safety
+    const encodedMessage = encodeURIComponent(message);
+    // Construct WhatsApp URL
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    // Open URL in a new tab/window
+    window.open(url, '_blank');
 }
 
 // Submit form data to Google Sheets and WhatsApp
@@ -104,10 +81,19 @@ async function submitToGoogleSheets() {
             body: JSON.stringify(formData)
         });
 
-        // Send to WhatsApp
-        await sendWhatsAppMessage(formData);
+        // Prepare WhatsApp message
+        const whatsappMessage = `
+New Registration Details:
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Date of Birth: ${formData.date}
+        `;
 
-        showSuccess('Registration successful! Your data has been saved and notification sent.');
+        // Send WhatsApp message
+        sendWhatsAppMessage('919876543210', whatsappMessage); // Replace with your WhatsApp number
+
+        showSuccess('Registration successful! Your data has been saved and WhatsApp notification sent.');
         document.getElementById('registrationForm').reset();
     } catch (error) {
         console.error('Error:', error);
