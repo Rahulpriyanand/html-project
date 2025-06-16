@@ -10,39 +10,14 @@ const WHATSAPP_CONFIG = {
 function validateForm(event) {
     event.preventDefault();
     
-    const form = document.getElementById('registrationForm');
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-
-    // Password validation
-    if (password.length < 8) {
-        showError('Password must be at least 8 characters long');
-        return false;
-    }
-
-    // Password match validation
+    
     if (password !== confirmPassword) {
-        showError('Passwords do not match');
+        showError('Passwords do not match!');
         return false;
     }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showError('Please enter a valid email address');
-        return false;
-    }
-
-    // Phone validation
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(phone)) {
-        showError('Please enter a valid 10-digit phone number');
-        return false;
-    }
-
-    // If all validations pass, submit to Google Sheets
+    
     submitToGoogleSheets();
     return false;
 }
@@ -91,7 +66,7 @@ Date of Birth: ${formData.date}
         `;
 
         // Send WhatsApp message
-        sendWhatsAppMessage('918510922129', whatsappMessage); // Replace with your WhatsApp number
+        sendWhatsAppMessage('919876543210', whatsappMessage); // Replace with your WhatsApp number
 
         showSuccess('Registration successful! Your data has been saved and WhatsApp notification sent.');
         document.getElementById('registrationForm').reset();
