@@ -199,7 +199,7 @@ async function submitToGoogleSheets(form) {
 
     try {
         // Replace with your Google Apps Script Web App URL
-        const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxj6TJW9G7oNuFHD5rFORsHmfpOfGEwVSAapGVKrSy-na5D4GNJhDs6Jc2bxGR3tT18/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
