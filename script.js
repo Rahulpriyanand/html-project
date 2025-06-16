@@ -91,7 +91,7 @@ Date of Birth: ${formData.date}
         `;
 
         // Send WhatsApp message
-        sendWhatsAppMessage('919876543210', whatsappMessage); // Replace with your WhatsApp number
+        sendWhatsAppMessage('918510922129', whatsappMessage); // Replace with your WhatsApp number
 
         showSuccess('Registration successful! Your data has been saved and WhatsApp notification sent.');
         document.getElementById('registrationForm').reset();
