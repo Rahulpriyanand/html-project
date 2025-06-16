@@ -60,11 +60,13 @@ async function submitToGoogleSheets() {
             body: JSON.stringify(formData)
         });
 
+        // Since we're using no-cors mode, we can't read the response
+        // But we can assume success if no error was thrown
         showSuccess('Registration successful! Your data has been saved.');
         document.getElementById('registrationForm').reset();
     } catch (error) {
-        showError('There was an error submitting the form. Please try again.');
         console.error('Error:', error);
+        showError('There was an error submitting the form. Please try again.');
     }
 }
 
