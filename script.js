@@ -1,3 +1,11 @@
+// WhatsApp configuration
+const WHATSAPP_CONFIG = {
+    accountSid: 'YOUR_TWILIO_ACCOUNT_SID',
+    authToken: 'YOUR_TWILIO_AUTH_TOKEN',
+    from: 'whatsapp:+14155238886', // Your Twilio WhatsApp number
+    to: 'whatsapp:+1234567890' // Recipient's WhatsApp number
+};
+
 // Form validation function
 function validateForm(event) {
     event.preventDefault();
@@ -39,7 +47,42 @@ function validateForm(event) {
     return false;
 }
 
-// Submit form data to Google Sheets
+// Function to send WhatsApp message
+async function sendWhatsAppMessage(formData) {
+    const message = `
+New Registration:
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Date of Birth: ${formData.date}
+    `;
+
+    try {
+        const response = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + WHATSAPP_CONFIG.accountSid + '/Messages.json', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + btoa(WHATSAPP_CONFIG.accountSid + ':' + WHATSAPP_CONFIG.authToken),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                'From': WHATSAPP_CONFIG.from,
+                'To': WHATSAPP_CONFIG.to,
+                'Body': message
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('WhatsApp message failed to send');
+        }
+
+        console.log('WhatsApp message sent successfully');
+    } catch (error) {
+        console.error('Error sending WhatsApp message:', error);
+        throw error;
+    }
+}
+
+// Submit form data to Google Sheets and WhatsApp
 async function submitToGoogleSheets() {
     const formData = {
         name: document.getElementById('name').value,
@@ -51,6 +94,7 @@ async function submitToGoogleSheets() {
     };
 
     try {
+        // Send to Google Sheets
         const response = await fetch('https://script.google.com/macros/s/AKfycbxj6TJW9G7oNuFHD5rFORsHmfpOfGEwVSAapGVKrSy-na5D4GNJhDs6Jc2bxGR3tT18/exec', {
             method: 'POST',
             mode: 'no-cors',
@@ -60,9 +104,10 @@ async function submitToGoogleSheets() {
             body: JSON.stringify(formData)
         });
 
-        // Since we're using no-cors mode, we can't read the response
-        // But we can assume success if no error was thrown
-        showSuccess('Registration successful! Your data has been saved.');
+        // Send to WhatsApp
+        await sendWhatsAppMessage(formData);
+
+        showSuccess('Registration successful! Your data has been saved and notification sent.');
         document.getElementById('registrationForm').reset();
     } catch (error) {
         console.error('Error:', error);
