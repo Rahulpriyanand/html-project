@@ -35,23 +35,22 @@ function validateForm(event) {
     }
 
     // If all validations pass, submit to Google Sheets
-    submitToGoogleSheets(form);
+    submitToGoogleSheets();
     return false;
 }
 
 // Submit form data to Google Sheets
-async function submitToGoogleSheets(form) {
+async function submitToGoogleSheets() {
     const formData = {
-        name: form.name.value,
-        email: form.email.value,
-        password: form.password.value,
-        confirmPassword: form.confirmPassword.value,
-        date: form.date.value,
-        phone: form.phone.value
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        confirmPassword: document.getElementById('confirm-password').value,
+        date: document.getElementById('date').value,
+        phone: document.getElementById('phone').value
     };
 
     try {
-        // Replace with your Google Apps Script Web App URL
         const response = await fetch('https://script.google.com/macros/s/AKfycbxj6TJW9G7oNuFHD5rFORsHmfpOfGEwVSAapGVKrSy-na5D4GNJhDs6Jc2bxGR3tT18/exec', {
             method: 'POST',
             mode: 'no-cors',
@@ -62,7 +61,7 @@ async function submitToGoogleSheets(form) {
         });
 
         showSuccess('Registration successful! Your data has been saved.');
-        form.reset();
+        document.getElementById('registrationForm').reset();
     } catch (error) {
         showError('There was an error submitting the form. Please try again.');
         console.error('Error:', error);
